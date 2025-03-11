@@ -1,21 +1,29 @@
 #!/usr/bin/env bash
 set -e
-
 source ../.env
 source ../.vm_details.env
 
-echo "Pulling and Running Ollama model specified..."
-
-echo "Waiting for Ollama service to initialize..."
-
-# Adding this cuz let's give the service a few seconds to start at least
-sleep 10
-
-MODEL=${1:-$OLLAMA_DEFAULT_MODEL}
-
-ssh $USERNAME@$PUBLIC_IP << EOF
-  echo "Pulling model $MODEL..."
-  sudo docker exec ollama ollama run $MODEL
+if [ -n "$OLLAMA_DEFAULT_MODEL" ]; then
+  echo "Running default model $OLLAMA_DEFAULT_MODEL..."
+  ssh $USERNAME@$PUBLIC_IP << EOF
+    sudo docker exec ollama ollama run $OLLAMA_DEFAULT_MODEL
 EOF
+  echo "Default model $OLLAMA_DEFAULT_MODEL run successfully."
+fi
 
-echo "Model $MODEL run successfully."
+if [ -n "$OLLAMA_ADDITIONAL_MODELS" ]; then
+  echo "additional models $OLLAMA_ADDITIONAL_MODELS..."
+  IFS=',' read -ra MODELS <<< "$OLLAMA_ADDITIONAL_MODELS"
+
+  for MODEL in "${MODELS[@]}"; do
+    # trim whitespace
+    MODEL=$(echo "$MODEL" | xargs)
+    echo "Running additional model $MODEL..."
+    ssh $USERNAME@$PUBLIC_IP << EOF
+      sudo docker exec ollama ollama run $MODEL
+EOF
+    echo "Additional model $MODEL run successfully."
+  done
+fi
+
+echo "All models have been processed successfully."

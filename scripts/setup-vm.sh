@@ -35,9 +35,6 @@ ssh $USERNAME@$PUBLIC_IP << 'EOF'
 
   sudo docker volume create ollama_data
 
-  sudo docker run -d -v ollama_data:/root/.ollama \
-    -p 11434:11434 --name ollama ollama/ollama
-
   # Here we will place our docker-compose.yaml file
   mkdir -p ~/ollama-project
 EOF
