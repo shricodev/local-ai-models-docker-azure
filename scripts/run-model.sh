@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -e
+
 source ../.env
 source ../.vm_details.env
 

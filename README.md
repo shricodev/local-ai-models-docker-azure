@@ -4,14 +4,13 @@ This project automates the process of spinning up a Virtual Machine (VM) on Azur
 
 ## Project Structure
 
-```
+```plaintext
 ├── azure/
 │   ├── configure-network.sh       # Configures network settings for the VM
 │   ├── create-resource-group.sh   # Creates a resource group in Azure
 │   ├── create-vm.sh               # Creates a Virtual Machine in Azure
 │   └── get-vm-details.sh          # Retrieves public IP of the created VM
 ├── scripts/
-│   ├── access-with-ip.sh          # Limit access to VM to the user public IP
 │   ├── deploy-containers.sh       # Deploys Docker containers on the VM
 │   ├── run-model.sh               # Runs the AI model inside the container
 │   └── setup-vm.sh                # Sets up the VM (install docker) and all
@@ -83,13 +82,6 @@ This project automates the process of spinning up a Virtual Machine (VM) on Azur
 
    ```bash
    bash scripts/run-model.sh
-   ```
-
-4. **Access the Web Interface**
-   Use the following script to access the web interface via the VM's IP address:
-
-   ```bash
-   bash scripts/access-with-ip.sh
    ```
 
 ## Environment Variables
