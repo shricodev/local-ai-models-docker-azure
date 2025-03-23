@@ -12,7 +12,7 @@ This project automates the process of spinning up a Virtual Machine (VM) on Azur
 │   └── get-vm-details.sh          # Retrieves public IP of the created VM
 ├── scripts/
 │   ├── deploy-containers.sh       # Deploys Docker containers on the VM
-│   ├── run-model.sh               # Runs the AI model inside the container
+│   ├── run-models.sh              # Runs the AI model inside the container
 │   └── setup-vm.sh                # Sets up the VM (install docker) and all
 ├── .dockerignore
 ├── .env
@@ -81,7 +81,7 @@ This project automates the process of spinning up a Virtual Machine (VM) on Azur
    Start the AI model inside the Docker container:
 
    ```bash
-   bash scripts/run-model.sh
+   bash scripts/run-models.sh
    ```
 
 ## Environment Variables

@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-source ../.env
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+source "$PROJECT_ROOT/.env"
+
 echo "Configuring network security..."
 
 # Get current public IP address with fallback to .env one.

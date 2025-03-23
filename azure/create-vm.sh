@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-source ../.env
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+source "$PROJECT_ROOT/.env"
 
 VM_EXISTS=$(az vm show --resource-group $RESOURCE_GROUP --name $VM_NAME --query "name" -o tsv 2>/dev/null || echo "")
 

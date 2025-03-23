@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-source ../.env
-source ../.vm_details.env 2>/dev/null || echo "VM details not found, will be created by deployment"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+source "$PROJECT_ROOT/.env"
+source "$PROJECT_ROOT/.vm_details.env"
 
 echo "Setting up VM with Docker and dependencies..."
 

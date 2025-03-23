@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-source ../.env
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+source "$PROJECT_ROOT/.env"
 
 echo "Getting VM details..."
 
@@ -16,6 +19,6 @@ echo "VM Public IP: $PUBLIC_IP"
 echo "Ollama API endpoint: http://$PUBLIC_IP:$OLLAMA_PORT"
 echo "Web UI: http://$PUBLIC_IP:$WEBUI_PORT"
 
-echo "PUBLIC_IP=$PUBLIC_IP" > ../.vm_details.env
+echo "PUBLIC_IP=$PUBLIC_IP" > "$PROJECT_ROOT/.vm_details.env"
 
 echo "VM details retrieved successfully."

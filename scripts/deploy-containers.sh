@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
-source ../.env
-source ../.vm_details.env
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+source "$PROJECT_ROOT/.env"
+source "$PROJECT_ROOT/.vm_details.env"
 
 echo "Deploying Docker containers to the VM..."
 
-scp ../docker-compose.yaml $USERNAME@$PUBLIC_IP:~/ollama-project/
+scp "$PROJECT_ROOT/docker-compose.yaml" $USERNAME@$PUBLIC_IP:~/ollama-project/
 
 ssh $USERNAME@$PUBLIC_IP << 'EOF'
   cd ~/ollama-project
