@@ -7,6 +7,7 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 source "$PROJECT_ROOT/.env"
 source "$PROJECT_ROOT/.vm_details.env"
 
+echo "public ip is $PUBLIC_IP"
 echo "Setting up VM with Docker and dependencies..."
 
 ssh $USERNAME@$PUBLIC_IP << 'EOF'
@@ -27,7 +28,7 @@ ssh $USERNAME@$PUBLIC_IP << 'EOF'
     sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   sudo apt-get update
 
-  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
   # End of docker debian installation instructions
 
   sudo usermod -aG docker $USER
